@@ -1,0 +1,1283 @@
+.innerTemplate{
+    padding: 0;
+    width:1000px;
+    height:1416px;
+    position: relative;
+    zoom:1;
+    float: left;
+}
+.wordCenter{
+  text-align: center;
+}
+body,html,*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "微软雅黑";
+}
+th{
+  text-align: left;
+}
+
+/** 封面的样式 **/
+.cover {
+  background: url("http://oa.91118.com:8082/static/report/high/cover.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.cover .reportTit {
+  position: absolute;
+  width: 80%;
+  height: 200px;
+  top: 725px;
+  left: 10%;
+  font-size: 32px;
+  line-height: 70px;
+  background: url("http://oa.91118.com:8082/static/report/high/coverTit.png") no-repeat center bottom;
+  color: #322e30;
+  text-align: center;
+}
+.cover .userHead {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 343px;
+  left: 388px;
+}
+.cover .userHead img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.cover .userName {
+  font-size: 36px;
+  background: #d7ae33;
+  color: #FFF;
+  width: 210px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  position: absolute;
+  top: 536px;
+  left: 387px;
+}
+.cover .userBj {
+  font-size: 34px;
+  color: #322e30;
+  width: 500px;
+  height: 55px;
+  line-height: 53px;
+  text-align: center;
+  position: absolute;
+  top: 610px;
+  left: 250px;
+}
+.cover .sign {
+  width: 230px;
+  height: 115px;
+  background: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 1140px;
+  left: 700px;
+  border: 1px dotted #c6c3af;
+}
+.cover .sign img {
+  width: 100%;
+  height: 100%;
+}
+.cover .sign:after {
+  content: "班主任签字";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #b6b0af;
+}
+.cover .sign.has:after {
+  display: none;
+}
+
+/** 学生风采 **/
+.stuphoto {
+  background: url("http://oa.91118.com:8082/static/report/high/stuphoto.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.stuphoto .photoBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.stuphoto .photoBox .userimg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  display: block;
+}
+.stuphoto .photoBox .photounit {
+  border: 5px solid #ffffff;
+  border-radius: 4px;
+  background: #FFF;
+  position: absolute;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
+}
+.stuphoto .photoBox .imgtit {
+  display: block;
+  height: 45px;
+  width: 100%;
+  line-height: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background: #FFF;
+}
+.stuphoto .photoBox .photo_1 {
+  width: 323px;
+  height: 235px;
+  top: 285px;
+  left: 95px;
+  z-index: 5;
+}
+.stuphoto .photoBox .photo_1 .imgbox {
+  width: 100%;
+  height: 185px;
+  position: relative;
+  overflow: hidden;
+}
+.stuphoto .photoBox .photo_2 {
+  width: 323px;
+  height: 235px;
+  top: 239px;
+  left: 544px;
+  transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+}
+.stuphoto .photoBox .photo_2 .imgbox {
+  width: 100%;
+  height: 185px;
+  position: relative;
+  overflow: hidden;
+}
+.stuphoto .photoBox .photo_3 {
+  width: 258px;
+  height: 180px;
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  top: 664px;
+  left: 70px;
+}
+.stuphoto .photoBox .photo_3 .imgbox {
+  width: 100%;
+  height: 130px;
+  position: relative;
+  overflow: hidden;
+}
+.stuphoto .photoBox .photo_4 {
+  width: 280px;
+  height: 460px;
+  top: 500px;
+  left: 364px;
+}
+.stuphoto .photoBox .photo_4 .imgbox {
+  width: 100%;
+  height: 410px;
+  position: relative;
+  overflow: hidden;
+}
+.stuphoto .photoBox .photo_5 {
+  width: 255px;
+  height: 355px;
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  top: 594px;
+  left: 659px;
+}
+.stuphoto .photoBox .photo_5 .imgbox {
+  width: 100%;
+  height: 305px;
+  position: relative;
+  overflow: hidden;
+}
+.stuphoto .photoBox .photo_6 {
+  width: 188px;
+  height: 335px;
+  top: 935px;
+  left: 143px;
+  transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+}
+.stuphoto .photoBox .photo_6 .imgbox {
+  width: 100%;
+  height: 285px;
+  position: relative;
+  overflow: hidden;
+}
+.stuphoto .photoBox .photo_7 {
+  width: 323px;
+  height: 235px;
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  top: 1002px;
+  left: 413px;
+}
+.stuphoto .photoBox .photo_7 .imgbox {
+  width: 100%;
+  height: 185px;
+  position: relative;
+  overflow: hidden;
+}
+
+/** 身体素质 **/
+.physical {
+  background: url("http://oa.91118.com:8082/static/report/high/cz_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.physical .innerMain {
+  padding: 0 32px;
+  position: absolute;
+  width: 100%;
+  top: 187px;
+  height: 400px;
+}
+.physical .innerMain .subTit {
+  font-size: 20px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #005525;
+}
+.physical .innerMain .subTit.charts {
+  margin-top: 15px;
+}
+.physical .innerMain .startPhysical {
+  border: 2px solid #005223;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.physical .innerMain .startPhysical .physicalTable {
+  border: none;
+}
+.physical .innerMain .startPhysical .physicalTable td, .physical .innerMain .startPhysical .physicalTable th {
+  width: 15%;
+  padding-left: 32px;
+  border: none;
+}
+.physical .innerMain .physicalTable {
+  width: 100%;
+  border: none;
+  border-top: 8px solid #0b9340;
+  border-bottom: 8px solid #0b9340;
+}
+.physical .innerMain .physicalTable td, .physical .innerMain .physicalTable th {
+  width: 25%;
+  padding-left: 32px;
+  border: none;
+}
+.physical .innerMain .physicalTable th {
+  height: 46px;
+  background: #b5d9a7;
+  line-height: 46px;
+  color: #005525;
+  font-size: 20px;
+  text-align: left;
+}
+.physical .innerMain .physicalTable td {
+  height: 62px;
+  line-height: 62px;
+  background: #FFF;
+  color: #171615;
+  font-size: 20px;
+}
+.physical .innerMain .physicalTable .colspan {
+  width: 400px;
+}
+.physical .innerMain .report_tips {
+  font-size: 18px;
+  color: #0b9340;
+  margin: 5px 0 20px;
+}
+.physical .innerMain .physicalEchart {
+  height: 390px;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.physical .innerMain .physicalEchart .chartBox {
+  width: 100%;
+  height: 100%;
+}
+.physical .innerMain .physicalEchart .sg {
+  font-size: 14px;
+  color: #00652c;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+.physical .innerMain .physicalEchart .sg::after {
+  content: " ";
+  width: 17px;
+  height: 17px;
+  background: #a7d47f;
+  position: absolute;
+  right: -24px;
+  top: 2px;
+}
+.physical .innerMain .physicalEchart .tz {
+  font-size: 14px;
+  color: #00652c;
+  position: absolute;
+  top: 15px;
+  right: 60px;
+}
+.physical .innerMain .physicalEchart .tz::after {
+  content: " ";
+  width: 17px;
+  height: 17px;
+  background: #f3af8c;
+  position: absolute;
+  right: -24px;
+  top: 2px;
+}
+.physical .innerMain .physicalOpinion {
+  font-size: 16px;
+  height: 220px;
+  line-height: 30px;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 15px;
+  padding: 15px 20px;
+}
+
+
+/** 学业成绩单 **/
+.summary {
+  background: url("http://oa.91118.com:8082/static/report/high/hz_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.summary .summaryMain {
+  top: 175px;
+  width: 100%;
+  padding: 0 32px;
+  position: absolute;
+}
+.summary .scroeTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.summary .scroeTable td, .summary .scroeTable th {
+  border: 1px solid rgba(221, 221, 221, 0.6);
+  width: 16.67%;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+}
+.summary .scroeTable th {
+  background: #b5d9a7;
+  font-size: 14px;
+  color: #005525;
+  height: 26px;
+  line-height: 26px;
+}
+.summary .scroeTable td {
+  background: #fff;
+  color: #171615;
+  height: 30px;
+}
+.summary .rewardTable {
+  width: 100%;
+  margin-top: 12px;
+  border-collapse: collapse;
+}
+.summary .rewardTable td, .summary .rewardTable th {
+  border: 1px solid #e3e4e5;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+}
+.summary .rewardTable th {
+  background: #b5d9a7;
+  font-size: 14px;
+  color: #005525;
+}
+.summary .rewardTable td {
+  background: #fff;
+  color: #171615;
+  line-height: 34px;
+  height: 100px;
+  vertical-align: top;
+}
+.summary .summaryChart {
+  position: absolute;
+  top: 920px;
+  width: 100%;
+  padding: 0 32px;
+}
+.summary .summaryChart .summaryTit {
+  font-size: 20px;
+  font-weight: bold;
+  color: #005525;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.summary .summaryChart .chartBox {
+  width: 100%;
+  height: 405px;
+  background: #fefdfa;
+  border-radius: 15px;
+}
+.summary .summaryChart .chartBox .radarChart, .summary .summaryChart .chartBox .treeChart {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.summary .summaryChart .chartBox .radarChart .chartContent {
+  width: 100%;
+  height: 330px;
+  padding-top: 10px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeTips {
+  width: 99px;
+  height: 283px;
+  background: url("http://oa.91118.com:8082/static/report/high/treetips.png") no-repeat center;
+  background-size: 100% 100%;
+  float: right;
+  margin-top: 80px;
+  margin-right: 20px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeBox {
+  overflow: hidden;
+  height: 100%;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treelev {
+  width: 120px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: #ee9526;
+  font-size: 18px;
+  color: #FFF;
+  line-height: 32px;
+  text-align: center;
+  margin: 20px auto 0;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treetips {
+  width: 100%;
+  font-size: 12px;
+  color: #5d5a57;
+  text-align: center;
+  padding-top: 10px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treereal {
+  margin-top: 15px;
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treereal .leafbg {
+  width: 100%;
+  height: 230px;
+  background: url("http://oa.91118.com:8082/static/report/leafBg.png") no-repeat center;
+  position: absolute;
+  top: 0;
+  background-size: 65% auto;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj {
+  width: 100%;
+  height: 100%;
+  background: url("http://oa.91118.com:8082/static/report/high/tree.png") no-repeat center center;
+  background-size: auto 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox {
+  position: absolute;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox .mc {
+  position: absolute;
+  top: -20px;
+  font-size: 12px;
+  width: 40px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .Leaf {
+  background: url("http://oa.91118.com:8082/static/report/high/tree-B.png") no-repeat center center;
+  background-size: 100% 100%;
+  width: 30px;
+  height: 39px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .Leaf.l_A {
+  background: url("http://oa.91118.com:8082/static/report/high/tree-A.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .Leaf.l_B {
+  background: url("http://oa.91118.com:8082/static/report/high/tree-B.png") no-repeat center center;
+  background-size: 80% auto;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .Leaf.l_C {
+  background: url("http://oa.91118.com:8082/static/report/high/tree-C.png") no-repeat center center;
+  background-size: 60% auto;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .Leaf.l_D {
+  background: url("http://oa.91118.com:8082/static/report/high/tree-D.png") no-repeat center center;
+  background-size: 40% auto;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox .mc {
+  position: absolute;
+  font-weight: bold;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_0 {
+  top: 25px;
+  left: 120px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_0 .Leaf {
+  transform: rotateY(180deg) rotate(20deg);
+  -webkit-transform: rotateY(180deg) rotate(20deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_0 .mc {
+  top: -5px;
+  left: 15px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_1 {
+  top: 10px;
+  left: 202px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_1 .mc {
+  top: -5px;
+  left: -10px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_2 {
+  top: 60px;
+  left: 70px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_2 .Leaf {
+  transform: rotateY(180deg) rotate(20deg);
+  -webkit-transform: rotateY(180deg) rotate(20deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_3 {
+  top: 35px;
+  left: 250px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_3 .Leaf {
+  transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_3 .mc {
+  top: -12px;
+  left: 12px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_4 {
+  top: 110px;
+  left: 70px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_4 .Leaf {
+  transform: rotateY(180deg) rotate(50deg);
+  -webkit-transform: rotateY(180deg) rotate(50deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_4 .mc {
+  top: -8px;
+  left: 0px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_5 {
+  top: 120px;
+  left: 140px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_5 .Leaf {
+  transform: rotateY(180deg) rotate(50deg);
+  -webkit-transform: rotateY(180deg) rotate(50deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_5 .mc {
+  top: -8px;
+  left: -5px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_6 {
+  top: 85px;
+  left: 210px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_6 .Leaf {
+  transform: rotate(50deg);
+  -webkit-transform: rotate(50deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_6 .mc {
+  top: -8px;
+  left: -5px;
+  white-space: nowrap;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_7 {
+  top: 105px;
+  left: 265px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_7 .Leaf {
+  transform: rotate(40deg);
+  -webkit-transform: rotate(40deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_7 .mc {
+  top: -8px;
+  left: 15px;
+  white-space: nowrap;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_8 {
+  top: 160px;
+  left: 110px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_8 .Leaf {
+  transform: rotateY(180deg) rotate(50deg);
+  -webkit-transform: rotateY(180deg) rotate(50deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_8 .mc {
+  top: -8px;
+  left: -5px;
+  white-space: nowrap;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_9 {
+  top: 158px;
+  left: 245px;
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_9 .Leaf {
+  transform: rotate(50deg);
+  -webkit-transform: rotate(50deg);
+}
+.summary .summaryChart .chartBox .treeChart .chartContent .treeobj .LeafBox#l_9 .mc {
+  top: -8px;
+  left: 15px;
+  white-space: nowrap;
+}
+.summary .summaryChart .chartBox .radarTit {
+  margin-top: 15px;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  font-size: 19px;
+  line-height: 30px;
+}
+.summary .summaryChart .chartBox .radarTit p {
+  font-size: 12px;
+  color: #686663;
+}
+
+/** 课程页面 **/
+.courseReport {
+  background: url("http://oa.91118.com:8082/static/report/high/kc_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.courseReport .courseTit {
+  width: 245px;
+  height: 70px;
+  line-height: 70px;
+  position: absolute;
+  top: 50px;
+  left: 160px;
+  text-align: center;
+  font-size: 36px;
+  color: #005525;
+  font-weight: bold;
+}
+.courseReport .courseMain {
+  top: 140px;
+  width: 100%;
+  padding: 0 32px;
+  position: absolute;
+}
+.courseReport .courseMain .courseSubTit {
+  font-size: 20px;
+  color: #005525;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+.courseReport .courseMain .courseChart {
+  width: 100%;
+  height: 190px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #e3e4e5;
+}
+.courseReport .courseMain .suggestMain {
+  width: 100%;
+  height: 440px;
+  background: #FFFFFF;
+  border-radius: 13px;
+}
+.courseReport .courseMain .suggestMain .suggestBox {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.courseReport .courseMain .suggestMain .suggestBox .suggestTit {
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  background: #4c7850;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 18px;
+  color: #FFF;
+}
+.courseReport .courseMain .suggestMain .suggestBox .suggestCont {
+  width: 420px;
+  height: 370px;
+  border-radius: 10px;
+  background: #e1efdd;
+  margin: 0 auto;
+  padding: 10px 15px;
+  line-height: 1.5em;
+  font-size: 15px;
+}
+.courseReport .courseMain .suggestMain .suggestBox .suggestCont p {
+  margin-bottom: 5px;
+}
+.courseReport .courseMain .lineChart {
+  width: 100%;
+  height: 100%;
+}
+.courseReport .courseTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.courseReport .courseTable td, .courseReport .courseTable th {
+  border: 1px solid rgba(221, 221, 221, 0.6);
+  height: 26px;
+  line-height: 26px;
+  padding-left: 10px;
+}
+.courseReport .courseTable th {
+  background: #b5d9a7;
+  font-size: 14px;
+  color: #005525;
+}
+.courseReport .courseTable td {
+  background: #fff;
+  color: #171615;
+  height: 45px;
+  line-height: 45px;
+}
+.courseReport .courseTable .roadBox {
+  width: 310px;
+  height: 35px;
+  background: url("http://oa.91118.com:8082/static/report/road.png") no-repeat center;
+  background-size: 100% 100%;
+  float: left;
+  margin-left: 20px;
+  position: relative;
+}
+.courseReport .courseTable .roadBox .person {
+  width: 29px;
+  height: 40px;
+  background: url("http://oa.91118.com:8082/static/report/dot-person.png") no-repeat center;
+  background-size: 100% 100%;
+  position: absolute;
+  top: -5px;
+}
+
+/*** 品德行为 ***/
+.morals {
+  background: url("http://oa.91118.com:8082/static/report/high/pd_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.morals .moralsMain {
+  top: 165px;
+  width: 100%;
+  padding: 0 32px;
+  position: absolute;
+}
+.morals .moralsMain .moralsItem {
+  width: 100%;
+  height: 205px;
+  background: #FFF;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.morals .moralsMain .moralsItem .moralChart {
+  width: 100%;
+  height: 100%;
+}
+.morals .moralsMain .moralsItem .moraltips {
+  position: absolute;
+  top: 12px;
+  left: 150px;
+  font-size: 14px;
+}
+.morals .moralsMain .moralsItem .moraltips span {
+  margin-right: 40px;
+  position: relative;
+}
+.morals .moralsMain .moralsItem .moraltips .kp_1::after {
+  content: " ";
+  background: #b6d480;
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  right: -24px;
+  top: 0;
+}
+.morals .moralsMain .moralsItem .moraltips .kp_2::after {
+  content: " ";
+  background: #ef887f;
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  right: -24px;
+  top: 0;
+}
+.morals .moralsMain .moralsItem .moraltips .kp_3::after {
+  content: " ";
+  background: #6d88c4;
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  right: -24px;
+  top: 0;
+}
+.morals .moralsMain .moralsItem .moraltips .kp_4::after {
+  content: " ";
+  background: #bc7cb2;
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  right: -24px;
+  top: 0;
+}
+.morals .moralsMain .moralsItem .moraltips .kp_5::after {
+  content: " ";
+  background: #90c99b;
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  right: -24px;
+  top: 0;
+}
+.morals .moralsMain .moralsItem .moraltips .kp_6::after {
+  content: " ";
+  background: #99d5f3;
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  right: -24px;
+  top: 0;
+}
+.morals .moralsSubTit {
+  font-size: 20px;
+  display: inline-block;
+  color: #005525;
+  height: 36px;
+  line-height: 36px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.morals .suggestMain {
+  width: 100%;
+  height: 290px;
+  background: #FFFFFF;
+  border-radius: 15px;
+  position: relative;
+}
+.morals .suggestMain .suggestBox {
+  width: 100%;
+  height: 100%;
+  float: left;
+  padding: 20px 0;
+}
+.morals .suggestMain .suggestBox .suggestTit {
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 16px;
+  background: #dbe494;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 18px;
+  color: #005525;
+}
+.morals .suggestMain .suggestBox .suggestCont {
+  width: 96%;
+  height: 250px;
+  border-radius: 10px;
+  background: #e1efdd;
+  margin: 0 auto;
+  padding: 20px 30px;
+  font-size: 14px;
+  line-height: 28px;
+}
+.morals .suggestMain .suggestBox .suggestCont p {
+  margin: 0 0 5px 0;
+}
+
+
+/**实践创新**/
+.practice {
+  background: url("http://oa.91118.com:8082/static/report/high/sj_bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.practice .practiceMain {
+  top: 205px;
+  width: 100%;
+  padding: 0 32px;
+  position: absolute;
+}
+.practice .practiceTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.practice .practiceTable td, .practice .practiceTable th {
+  border: 1px solid rgba(221, 221, 221, 0.6);
+  height: 28px;
+  line-height: 28px;
+  padding-left: 10px;
+}
+.practice .practiceTable th {
+  background: #0b9340;
+  font-size: 14px;
+  color: #FFF;
+}
+.practice .practiceTable td {
+  background: #fff;
+  color: #171615;
+  height: 32px;
+  line-height: 32px;
+}
+.practice .practiceSubTit {
+  font-size: 20px;
+  color: #005525;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  margin: 15px 0 10px;
+  font-weight: bold;
+}
+.practice .suggestMain {
+  width: 100%;
+  height: 350px;
+  background: #fefdfa;
+  border-radius: 13px;
+  position: relative;
+}
+.practice .suggestMain .suggestBox {
+  width: 100%;
+  height: 100%;
+  float: left;
+  padding: 20px 0;
+}
+.practice .suggestMain .suggestBox .suggestCont {
+  width: 96%;
+  height: 310px;
+  border-radius: 10px;
+  background: #e1efdd;
+  margin: 0 auto;
+  padding: 20px 30px;
+  font-size: 14px;
+  line-height: 28px;
+}
+.practice .suggestMain .suggestBox .suggestCont p {
+  margin-bottom: 5px;
+}
+
+  /**国际视野**/
+  .inter {
+    background: url("http://oa.91118.com:8082/static/report/high/gj_bg.jpg") no-repeat;
+    background-size: 100% 100%;
+  }
+  .inter .interMain {
+    top: 205px;
+    width: 100%;
+    padding: 0 32px;
+    position: absolute;
+  }
+  .inter .interTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .inter .interTable td, .inter .interTable th {
+    border: 1px solid rgba(221, 221, 221, 0.6);
+    height: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+  }
+  .inter .interTable th {
+    background: #0b9340;
+    font-size: 14px;
+    color: #FFF;
+  }
+  .inter .interTable td {
+    background: #fff;
+    color: #171615;
+    height: 32px;
+    line-height: 32px;
+  }
+  .inter .interSubTit {
+    font-size: 20px;
+    color: #005525;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  .inter .suggestMain {
+    width: 100%;
+    height: 410px;
+    background: #FFFFFF;
+    border-radius: 13px;
+    position: relative;
+  }
+  .inter .suggestMain .suggestBox {
+    width: 50%;
+    height: 100%;
+    float: left;
+  }
+  .inter .suggestMain .suggestBox .suggestTit {
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 16px;
+    background: #4c7850;
+    margin: 15px auto;
+    text-align: center;
+    font-size: 18px;
+    color: #FFF;
+  }
+  .inter .suggestMain .suggestBox .suggestCont {
+    width: 420px;
+    height: 320px;
+    border-radius: 10px;
+    background: #e1efdd;
+    margin: 0 auto;
+    font-size: 14px;
+    padding: 10px 15px;
+    line-height: 1.5em;
+  }
+  .inter .suggestMain .suggestBox .suggestCont p {
+    margin-bottom: 5px;
+  }
+
+  /**成长规划**/
+  .growup {
+    background: url("http://oa.91118.com:8082/static/report/gh_bg.png") no-repeat;
+    background-size: 100% 100%;
+  }
+  .growup .reportTit {
+    position: absolute;
+    width: 80%;
+    top: 120px;
+    left: 55px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #171615;
+  }
+  .growup .growupMain {
+    position: absolute;
+    padding: 0 32px;
+    width: 100%;
+    top: 180px;
+    left: 0;
+  }
+  .growup .growupBot {
+    background: url("http://oa.91118.com:8082/static/report/gh_bot.png") no-repeat center;
+    height: 290px;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+  }
+  .growup .growupTable {
+    width: 100%;
+    border: none;
+    margin-bottom: 15px;
+  }
+  .growup .growupTable td, .growup .growupTable th {
+    width: 25px;
+    padding: 0 10px;
+    border: 1px solid #e3e4e5;
+  }
+  .growup .growupTable th {
+    height: 28px;
+    background: #79a5d7;
+    line-height: 28px;
+    color: #FFF;
+    font-size: 14px;
+    text-align: left;
+  }
+  .growup .growupTable td {
+    padding: 10px;
+    background: #FFF;
+    height: 160px;
+    line-height: 30px;
+    color: #181716;
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .growup .subTit {
+    font-size: 22px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bold;
+  }
+  .growup .growupSuggest {
+    width: 100%;
+    height: 240px;
+    background: #eff1f5;
+    border-radius: 12px;
+    position: relative;
+    z-index: 5;
+    padding: 10px 20px;
+    line-height: 28px;
+    font-size: 14px;
+  }
+
+/**校长寄语**/
+.message {
+  background: url("http://oa.91118.com:8082/static/report/high/jy_bg.jpg") no-repeat;
+  overflow: hidden;
+  background-size: 100% 100%;
+  padding-top: 260px;
+}
+.message .messageTit {
+  font-size: 36px;
+  color: #171615;
+  font-weight: bold;
+  text-align: center;
+}
+.message .jyCont {
+  width: 570px;
+  margin: 0 auto;
+  margin-top: 60px;
+  font-size: 19px;
+  line-height: 32px;
+}
+.message .sign {
+  width: 210px;
+  height: 105px;
+  position: absolute;
+  border: 1px dashed #b5b1aa;
+  top: 1040px;
+  left: 560px;
+}
+.message .sign img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+.message .sign::after {
+  content: "校长签字";
+  font-size: 18px;
+  color: #d7d7d4;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 40px;
+  left: 0;
+}
+
+  /*** 封底 ***/
+  .backcover {
+    background: url("http://oa.91118.com:8082/static/report/high/backcover_bg.jpg") no-repeat;
+    background-size: 100% 100%;
+  }
+  .backcover .reportTit {
+    position: absolute;
+    width: 80%;
+    top: 130px;
+    left: 32px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #005525;
+  }
+  .backcover .reportTit_2 {
+    position: absolute;
+    width: 80%;
+    top: 720px;
+    left: 32px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #005525;
+  }
+  .backcover .infoMain, .backcover .infoMain_2 {
+    position: absolute;
+    width: 935px;
+    height: 465px;
+    font-size: 14px;
+    line-height: 22px;
+    background: #FFFFFF;
+    border: 3px solid #005625;
+    border-radius: 30px;
+    padding: 20px 30px;
+    font-weight: bold;
+  }
+  .backcover .infoMain {
+    top: 185px;
+    left: 32px;
+  }
+  .backcover .infoMain_2 {
+    top: 780px;
+    left: 32px;
+  }
+  
+  .backcover.low_1 {
+    background: url("http://oa.91118.com:8082/static/report/low_1/backcover_bg.png") no-repeat;
+    background-size: 100% 100%;
+  }
+  .backcover.low_1 .reportTit {
+    position: absolute;
+    width: 80%;
+    top: 135px;
+    left: 55px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #171615;
+    background: url("http://oa.91118.com:8082/static/report/low_1/dot-jp.png") no-repeat right center;
+    background-size: auto 70%;
+    padding-left: 0;
+    padding-right: 30px;
+    width: auto;
+    display: inline-block;
+  }
+  .backcover.low_1 .reportTit_2 {
+    position: absolute;
+    width: 80%;
+    top: 705px;
+    left: 55px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #171615;
+    background: url("http://oa.91118.com:8082/static/report/low_1/dot-jp.png") no-repeat right center;
+    background-size: auto 70%;
+    padding-left: 0;
+    padding-right: 30px;
+    width: auto;
+    display: inline-block;
+  }
+  .backcover.low_1 .infoMain, .backcover.low_1 .infoMain_2 {
+    position: absolute;
+    width: 830px;
+    height: 360px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #FFF;
+  }
+  .backcover.low_1 .infoMain {
+    top: 225px;
+    left: 80px;
+  }
+  .backcover.low_1 .infoMain_2 {
+    top: 820px;
+    left: 80px;
+  }

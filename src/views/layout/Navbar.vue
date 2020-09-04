@@ -1,0 +1,157 @@
+<template>
+
+<el-menu class="navbar" mode="horizontal">
+
+<div class="levelName">{{levelName}}</div>
+
+<levelbar class="levelbar"></levelbar>
+<!-- <tabs-view></tabs-view> -->
+<!-- <error-log v-if="0>0" class="errLog-container" :logsList="log"></error-log> -->
+
+<!--<el-dropdown class="avatar-container" trigger="click">
+    <div class="avatar-wrapper"> 
+    <screenfull class='screenfull'></screenfull>
+    <span class="Topusername">{{username}}</span>
+    <i class="el-icon-caret-bottom"></i> 
+    </div>
+    <el-dropdown-menu class="user-dropdown" slot="dropdown">
+    <router-link class='inlineBlock' to="/">
+        <el-dropdown-item> 首页 </el-dropdown-item>
+    </router-link>      
+    <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
+    </el-dropdown-menu>
+</el-dropdown>-->
+</el-menu>
+</template>
+
+<script>
+import {
+mapGetters
+} from 'vuex';
+import Levelbar from './Levelbar';
+import TabsView from './TabsView';
+import Hamburger from 'components/Hamburger';
+import Screenfull from 'components/Screenfull';
+import ErrorLog from 'components/ErrLog';
+import errLogStore from 'store/errLog';
+export default {
+name: 'NavbarMin',
+components: {
+    Levelbar,
+    TabsView,
+    Hamburger,
+    ErrorLog,
+    Screenfull
+},
+data() {
+    return {
+    log: errLogStore.state.errLog,
+    username: '',
+    levelName: '',
+    }
+},
+watch: {
+  $route() {
+    this.getPageTit();
+  }
+},
+computed: { ...mapGetters([
+    'sidebar',
+    'name',
+    'avatar'
+])
+},
+mounted() {
+    this.username = this.$store.getters.name;
+    this.getPageTit();
+},
+methods: {
+    toggleSideBar() {
+      this.$store.dispatch('ToggleSideBar',{"opened":this.sidebar.opened})
+    },
+    logout() {
+      this.$store.dispatch('LogOut').then(() => {
+          // this.$store.dispatch('SetCurMenuId','dashboard')
+          location.reload(); // 为了重新实例化vue-router对象 避免bug
+      });
+    },
+    getPageTit(){
+      let matched = this.$route.matched.filter(item => item.name);
+      const first = matched[0];
+      this.levelList = matched;
+      this.levelName = this.levelList[this.levelList.length-1].name;
+    }
+}
+}
+</script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+.Topusername{ font-size: 18px}
+.navbar {
+    padding-top: 20px;
+    width: 100%;
+    height: 100px;
+    line-height: 50px;
+    background: transparent !important;
+    .levelName{
+        font-family: 'fz';
+        float: left;
+        height: 54px;
+        line-height: 54px !important;
+        color: #666;
+        padding: 0 25px;
+        font-size: 24px;
+        margin-top: 8px;
+    }
+    .levelbar{
+        float: right;
+        height: 54px;
+        background: #e5e5e9;
+        line-height: 54px;
+        border-radius: 27px;
+        margin:8px 20px 0;
+        padding: 0 15px;
+    }
+    .hamburger-container {
+        line-height: 58px;
+        height: 50px;
+        float: left;
+        padding: 0 10px;
+    }
+    .errLog-container {
+        display: inline-block;
+        position: absolute;
+        right: 150px;
+    }
+    .screenfull {
+        position: absolute;
+        // right: 90px;
+        left: -30px;
+        top: 12px;
+        color: red;
+    }
+    .avatar-container {
+        height: 50px;
+        display: inline-block;
+        position: absolute;
+        right: 35px;
+        .avatar-wrapper {
+            cursor: pointer;
+            margin-top: 5px;
+            position: relative;
+            .user-avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+            }
+            .el-icon-caret-bottom {
+                position: absolute;
+                right: -20px;
+                // top: 25px;
+                top: 20px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+</style>

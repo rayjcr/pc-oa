@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="printReport.css" rel="stylesheet">
+    <title>打印页面</title>
+</head>
+<body>
+<script src="xmAppraise.js"></script>
+<script src="echarts.min.js"></script>
+<script src='jquery.min.js'></script>
+<script src='lodash.core.js'></script>
+<div id="app"></div>
+
+
+
+
+</body>
+<!-- http://localhost:8143/printReport.html?bgdId=9e6c4ba7-1338-4ea5-9fc0-1abb64eb6017&bgdSZPX=&bjdm=201836510144&njdm=11&qrCodeSize=50&xh=30190412111043912&xmZgfLjRwZgf=false&xxdm=365&token=eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIzNjUxMDEiLCJ1c2VySWQiOiJlOTgzN2I4Yy1lYTE5LTQ2ZTItODQzMy03NzU4YmI1NmE0NWIiLCJ1c2VyTmFtZSI6IuW-kOaYpeeHlSIsInh4ZG0iOiIzNjUiLCJ0eXBlIjoiMyIsIm1vYmlsZSI6IjEzNTE1NzE0MDg1IiwidXNlcmNvZGUiOiIxMDEiLCJleHBpcmUiOjE1NjA4MjMwNTE2NjR9.wgh85K7hjTw5ncrxN5nwyX-JXqt0vGiQxN2ziLErTXgpZc-bylEpo5hEiyfWrWd114FKdhatzvJTpi-iYCSUjfJz9sC1bK9eCeyJj5KWGEuJqQuV0My_EXfn1_-c57si3jUpsGmn_ZLt4iXbDY-xKiSdi-3vzztoSFhXEj6IgWA -->
+<script>
+function loadImage(obj){
+    /**
+    * obj 当前图片
+    **/
+    var boxObj = $(obj).parent();
+    // console.log("index="+index,29);
+    // console.log(obj.naturalWidth,30);
+    // console.log(obj.naturalHeight,31);
+    var BoxRatio = boxObj.width()/boxObj.height();
+    var ImgRatio = obj.naturalWidth/obj.naturalHeight;
+    if(BoxRatio>=ImgRatio){
+        obj.style.width = "100%";
+        obj.style.height = "auto";
+    }else{
+        obj.style.width = "auto";
+        obj.style.height = "100%";
+    }
+    // console.log("BoxRatio="+BoxRatio,33);
+}
+
+window.onload = function(){
+
+    
+
+
+
+// bgdId: "9e6c4ba7-1338-4ea5-9fc0-1abb64eb6017"
+// bjdm: "2018365101000"
+// njdm: "11"
+// xh: "30190505085039228"
+// xxdm: "365"
+
+// $(function(){
+
+    var allPageInfo;
+    var showPageInfo;
+    var allGradeBgdszList;
+    var userImgPath;
+    var mbname="";
+    $.getUrlParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+    var baseUrl = 'http://192.168.0.27:8079'
+    // var parmet = {
+    //     bgdId:$.getUrlParam('bgdId'),
+    //     bgdSZPX:$.getUrlParam('bgdSZPX'),
+    //     bjdm:$.getUrlParam('bjdm'),
+    //     njdm:$.getUrlParam('njdm'),
+    //     qrCodeSize:$.getUrlParam('qrCodeSize'),
+    //     xh:$.getUrlParam('xh'),
+    //     xmZgfLjRwZgf:$.getUrlParam('xmZgfLjRwZgf'),
+    //     xxdm:$.getUrlParam('xxdm')
+    // }
+
+    // var bgdId = $.getUrlParam('bgdId');
+    // var xh = $.getUrlParam('xh');
+    // var xxdm = $.getUrlParam('xxdm');
+    // var token = $.getUrlParam('token');
+
+
+    var bgdId = "9e6c4ba7-1338-4ea5-9fc0-1abb64eb6017"
+    var xh = "30180904172917641"
+    var xxdm = "365"
+
+    var parmet = {
+        bgdId:bgdId,
+        bgdSZPX:"",
+        bjdm:"201836510101",
+        njdm:"11",
+        qrCodeSize:50,
+        xh:xh,
+        xmZgfLjRwZgf:false,
+        xxdm:xxdm
+    }
+
+    var token = 'eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIzNjUxMDEiLCJ1c2VySWQiOiJlOTgzN2I4Yy1lYTE5LTQ2ZTItODQzMy03NzU4YmI1NmE0NWIiLCJ1c2VyTmFtZSI6IuW-kOaYpeeHlSIsInh4ZG0iOiIzNjUiLCJ0eXBlIjoiMyIsIm1vYmlsZSI6IjEzNTE1NzE0MDg1IiwidXNlcmNvZGUiOiIxMDEiLCJleHBpcmUiOjE1NjE4ODEwMjc2OTZ9.tCwBgxlUqP27QWbyBNtuI0k6RmyOcuYxJITnregNVvqRm0bi7O8K-SPO3gvWSU-zyz0zwxj6EtMkE3PQMhxLhKDxLmNX_hnfhmp6m-_OFkog9jYn_qAYfbHzrzeMcO92CkDjXwiYMRW3NSeS18ELFHf_y9I0AAO4PQJl0makHA4'
+    //console.log(parmet,34);
+
+
+    $.ajax({
+        url: baseUrl + '/api/netcore/smartcredit/v1/Statistics/GetStudentBgdReport',
+        data:JSON.stringify(parmet),
+        dataType:'Json',
+        type:'POST',
+        contentType:"application/json; charset=UTF-8",
+        headers:{'Authorization':token},
+        success:function(data){
+            allPageInfo = data;
+            showPageInfo = $.extend(true,[],data);
+            console.log(allPageInfo,111122)
+            allGradeBgdszList = allPageInfo.bgdItemlist;
+            userImgPath = allPageInfo.studentInfo.tx
+            
+            //排除成长规划
+            showPageInfo.page = _.reject(showPageInfo.page,{"mc":"成长规划"})
+            //排除B类课
+            showPageInfo.page = _.reject(showPageInfo.page,{"mb":"5_1"})
+            
+            console.log(showPageInfo,111188)
+
+
+
+
+
+            creatPage();
+            //console.log(data,29);
+            
+        }
+    })
+
+    
+
+
+    function creatPage(){
+
+        // console.log(allPageInfo.page,84);
+
+        for(var i=0;i<showPageInfo.page.length;i++){
+            var funName="";
+            if(showPageInfo.page[i].mb=='5'){
+                funName = "creatMb"+showPageInfo.page[i].mb+"('"+showPageInfo.page[i].uuid+"')";
+                eval(funName); 
+            }else{
+                funName = "creatMb"+showPageInfo.page[i].mb+"()";
+                eval(funName);
+            }
+        }
+
+
+        // creatMb0();
+
+        // creatMb1();
+
+        // creatMb2();
+
+        // creatMb3();
+
+        // creatMb4();
+
+        // creatMb5("dce2a952-7fa3-4d7b-8e84-0e7447d31927");
+
+        // creatMb5();
+
+        // creatMb5();
+
+        // creatMb6();
+
+        // creatMb7();
+
+        // creatMb8();
+        
+        // creatMb9();
+
+        // creatMb10();
+    }
+
+
+    function creatMb0(){
+        var pageInfo = _.find(allPageInfo.page,{"mb":"0"});
+        var bgdxx = allPageInfo.bgdxx;
+        var userImgPath = allPageInfo.studentInfo.tx
+        var signImg = pageInfo.bgdItemlist[0].bgdqmModels[0].qm
+        
+
+        $("#app").append("<div class='innerTemplate cover '><div class='reportTit'>"+(allPageInfo.bgd.xn)+(allPageInfo.bgd.xq=='01'?'第一学期':'第二学期')+"</div><div class='userHead'><img src='"+(userImgPath?userImgPath:'http://oa.91118.com:8082/static/report/_testuser.jpg')+"'></div><div class='userName'>"+bgdxx.xm+"</div><div class='userBj'>"+bgdxx.bjmc+"</div><div class='sign "+(signImg!=''?'has':'')+"'>"+(signImg?'<img src="'+signImg+'">':'')+"</div></div>")
+    }
+
+    function creatMb1(){
+        var pageInfo = _.find(allPageInfo.page,{"mb":"1"});
+        // console.log(allPageInfo,143)
+        var allPhotoList = pageInfo.bgdItemlist[0].bgdxsfcList;
+        var mbNo = pageInfo.bgdItemlist[0].fy;
+        var userPhotoList = _.filter(allPhotoList,{"mb":mbNo});
+
+        
+
+        var photoHtml = ""
+        for(var i=0;i<7;i++){
+            photoHtml = photoHtml + "<div class='photounit photo_"+(i+1)+"'><div class='imgbox'><img class='userimg' onload='loadImage(this)' src='"+(userPhotoList[i]?userPhotoList[i].tpdz:'')+"'></div><span class='imgtit'>"+(userPhotoList[i]?userPhotoList[i].bz:'')+"</span></div>"
+        }
+
+        
+        $("#app").append("<div class='innerTemplate stuphoto '><div class='photoBox'>"+photoHtml+"</div></div>")
+
+    }
+
+    function creatMb2(){
+        var chartData = {
+                grid:{
+                    top:55,
+                    bottom:50,
+                    left:"60px",
+                    right:"60px",
+                },
+                xAxis: {
+                    type: 'category',
+                    data:[],
+                    axisLabel:{
+                        show:true,
+                        textStyle:{
+                            color: "#333",
+                            fontSize:14,
+                        } 
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            type:'dotted',
+                            color: '#3c8751',
+                        },
+                    },
+                    axisTick:{
+                        show:true,
+                    }
+                },
+                yAxis: [{
+                        type: 'value',
+                        min: 0,
+                        max: 180,
+                        interval: 30,
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#3c8751',
+                            },
+                        },
+                        splitLine:{
+                            show:false, 
+                        },
+                        axisLabel:{
+                            textStyle:{
+                                fontSize:14,
+                            }   
+                        },
+                        },
+                        {
+                        type: 'value',
+                        min: 0,
+                        max: 90,
+                        interval: 15,
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#3c8751',
+                            },
+                        },
+                        splitLine:{
+                            show:false, 
+                        },
+                        axisLabel:{
+                            textStyle:{
+                                fontSize:14,
+                            }   
+                        },
+                        }
+                ],
+                series: [{
+                    data:[],
+                    type: 'line',
+                    symbol:"circle",
+                    symbolSize:10,
+                    // smooth: false,
+                    itemStyle:{
+                        normal:{
+                            shadowColor: 'rgba(166, 212, 171, 1)',
+                            shadowBlur: 12,
+                            color:'#007232',
+                            lineStyle: {
+                            normal: {
+                                color: '#a7d47f',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                },{
+                    data:[],
+                    type: 'line',
+                    symbol:"circle",
+                    symbolSize:10,
+                    itemStyle:{
+                        normal:{
+                            color:'#e44a21',
+                            lineStyle: {
+                            normal: {
+                                color: '#f3af8c',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                }],
+                animation:false
+            }   
+            
+        var pageInfo = _.find(allPageInfo.page,{"mb":"2"});
+        // var physicalXmList = pageInfo.bgdItemlist[0].physicalFitnessInfo.xqPhysicalFitnessList;
+        var physicalXmList = _.find(pageInfo.bgdItemlist,{"lx":17}).physicalFitnessInfo.xqPhysicalFitnessList;
+
+        var startPhysical = _.find(physicalXmList,{"xmMc":"入学身体情况"});
+
+        var newPhysical = _.find(physicalXmList,{"xmMc":"最新体检情况"});
+        var startObj={
+            sg:'',
+            tz:'',
+            zy:'',
+            yy:'',
+            nl:'',
+        }
+        var newObj={
+            sg:'',
+            tz:'',
+            zy:'',
+            yy:'',
+            nl:'',
+        }
+        try{
+        startObj = {
+            sg: _.find(startPhysical.physicalFitnessItemList,{"rwMc":"身高"}).sz,
+            tz: _.find(startPhysical.physicalFitnessItemList,{"rwMc":"体重"}).sz,
+            zy: _.find(startPhysical.physicalFitnessItemList,{"rwMc":"左眼"}).sz,
+            yy: _.find(startPhysical.physicalFitnessItemList,{"rwMc":"右眼"}).sz,
+            nl: _.find(startPhysical.physicalFitnessItemList,{"rwMc":"年龄"}).sz,
+        };
+        startObj.bmi = (startObj.tz/(startObj.sg*startObj.sg/10000)).toFixed(2);
+        
+        newObj = {
+            sg: _.find(newPhysical.physicalFitnessItemList,{"rwMc":"身高"}).sz,
+            tz: _.find(newPhysical.physicalFitnessItemList,{"rwMc":"体重"}).sz,
+            zy: _.find(newPhysical.physicalFitnessItemList,{"rwMc":"左眼"}).sz,
+            yy: _.find(newPhysical.physicalFitnessItemList,{"rwMc":"右眼"}).sz,
+            nl: _.find(newPhysical.physicalFitnessItemList,{"rwMc":"年龄"}).sz,
+        };
+        newObj.bmi = (newObj.tz/(newObj.sg*newObj.sg/10000)).toFixed(2);
+        }catch(err){
+                
+        }
+        // console.log(physicalXmList,203)
+        // console.log(startObj,204)
+        // console.log(newObj,205)
+
+        for(var i=0;i<physicalXmList.length;i++){
+            // console.log(this.physicalXmList[i].xmMc,215)
+            chartData.xAxis.data.push(physicalXmList[i].xmMc);
+            chartData.series[0].data.push(_.find(physicalXmList[i].physicalFitnessItemList,{"rwMc":"身高"}).sz);
+            chartData.series[1].data.push(_.find(physicalXmList[i].physicalFitnessItemList,{"rwMc":"体重"}).sz);
+        }
+
+
+        var seed = Math.random();
+        $("#app").append("<div class='innerTemplate physical'><div class='innerMain'><div class='subTit'>最新体检情况</div><table class='physicalTable' cellspacing='0' cellpadding='0'><tr><th>性别</th><th>年龄</th><th>视力</th><th></th></tr><tr><td>男</td><td>"+(newObj?newObj.nl:'')+"</td><td>左眼:"+newObj.zy+"</td><td>右眼:"+newObj.yy+"</td></tr><tr><th>身高</th><th>体重</th><th>BMI</th><th>体重情况</th></tr><tr><td>"+newObj.sg+"cm</td><td>"+newObj.tz+"kg</td><td>"+newObj.bmi+"</td><td>"+getBMIStr(newObj.bmi)+"</td></tr></table><div class='report_tips'>注：BMI（体重指数）= 体重[kg]/身高²[m]</div><div class='subTit'>入学身体情况</div><div class='startPhysical'><table class='physicalTable' cellspacing='0' cellpadding='0'><tr><th>身高</th><th>体重</th><th>BMI</th><th>体重情况</th><th colspan='2' class='colspan'>视力</th></tr><tr><td>"+startObj.sg+"cm</td><td>"+startObj.tz+"kg</td><td>"+startObj.bmi+"</td><td>"+getBMIStr(startObj.bmi)+"</td><td>左眼:"+startObj.zy+"</td><td>右眼:"+startObj.yy+"</td></tr></table></div><div class='subTit'>身体素质曲线</div><div class='physicalEchart'><div class='sg'>身高(cm)</div><div class='tz'>体重(cm)</div><div class='chartBox' id='lineP1"+seed+"'></div></div><div class='subTit'>健康指导意见</div><div class='physicalOpinion'>"+getPhysicalSuggest(newObj,startObj)+"</div></div><div class='physicalBot'></div></div>")
+    
+        var Line1 = echarts.init(document.getElementById('lineP1'+seed));
+        Line1.setOption(chartData);
+    }
+
+    function creatMb3(){
+        var maxValue = 100;
+        var stepValue = 10;
+        var chartData_1 = {
+                title: {
+                    text:"",
+                    left: 20,
+                    top:10,
+                    color:"#005525",
+                    textStyle:{
+                        color:"#005525",
+                        fontSize:16,
+                    }
+                },
+                grid:{
+                    top:50,
+                    bottom:35,
+                    left:"60px",
+                    right:"40px",
+                },
+                xAxis: {
+                    type: 'category',
+                    data:[],
+                    axisTick:{
+                        show:false,
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            type:'dotted',
+                            color: '#333333',
+                        },
+                    },
+                    axisLabel:{
+                        show:true,
+                        textStyle:{
+                            color: "#333",
+                            fontSize:14,
+                        } 
+                    },
+                    axisTick:{
+                        show:true,
+                    }
+                },
+                yAxis: [{
+                        type: 'value',
+                        splitNumber:3,
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                        splitLine:{
+                            show:false, 
+                        },
+                        axisLabel:{
+                            textStyle:{
+                                fontSize:12,
+                            }   
+                        },
+                        },
+                ],
+                series: [{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    // smooth: false,
+                    itemStyle:{
+                        normal:{
+                            shadowColor: 'rgba(166, 212, 171, 1)',
+                            shadowBlur: 12,
+                            color:'#b6d480',
+                            lineStyle: {
+                            normal: {
+                                color: '#b6d480',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#ef887f',
+                            lineStyle: {
+                            normal: {
+                                color: '#ef887f',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#6d88c4',
+                            lineStyle: {
+                            normal: {
+                                color: '#6d88c4',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#bc7cb2',
+                            lineStyle: {
+                            normal: {
+                                color: '#bc7cb2',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#90c99b',
+                            lineStyle: {
+                            normal: {
+                                color: '#90c99b',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#99d5f3',
+                            lineStyle: {
+                            normal: {
+                                color: '#99d5f3',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                }],
+                animation:false
+            };
+        var chartData_2 = {
+                title: {
+                    text:"",
+                    left: 20,
+                    top:10,
+                    color:"#005525",
+                    textStyle:{
+                        color:"#005525",
+                        fontSize:16,
+                    }
+                },
+                grid:{
+                    top:50,
+                    bottom:35,
+                    left:"60px",
+                    right:"40px",
+                },
+                xAxis: {
+                    type: 'category',
+                    data:[],
+                    axisTick:{
+                        show:false,
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            type:'dotted',
+                            color: '#333333',
+                        },
+                    },
+                    axisLabel:{
+                        show:true,
+                        textStyle:{
+                            color: "#333",
+                            fontSize:14,
+                        } 
+                    },
+                    axisTick:{
+                        show:true,
+                    }
+                },
+                yAxis: [{
+                        type: 'value',
+                        splitNumber:3,
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                        splitLine:{
+                            show:false, 
+                        },
+                        axisLabel:{
+                            textStyle:{
+                                fontSize:12,
+                            }   
+                        },
+                        },
+                ],
+                series: [{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    // smooth: false,
+                    itemStyle:{
+                        normal:{
+                            shadowColor: 'rgba(166, 212, 171, 1)',
+                            shadowBlur: 12,
+                            color:'#b6d480',
+                            lineStyle: {
+                            normal: {
+                                color: '#b6d480',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#ef887f',
+                            lineStyle: {
+                            normal: {
+                                color: '#ef887f',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#6d88c4',
+                            lineStyle: {
+                            normal: {
+                                color: '#6d88c4',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#bc7cb2',
+                            lineStyle: {
+                            normal: {
+                                color: '#bc7cb2',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#90c99b',
+                            lineStyle: {
+                            normal: {
+                                color: '#90c99b',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#99d5f3',
+                            lineStyle: {
+                            normal: {
+                                color: '#99d5f3',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                }],
+                animation:false
+            };
+        var chartData_3 = {
+                title: {
+                    text:"",
+                    left: 20,
+                    top:10,
+                    color:"#005525",
+                    textStyle:{
+                        color:"#005525",
+                        fontSize:16,
+                    }
+                },
+                grid:{
+                    top:50,
+                    bottom:35,
+                    left:"60px",
+                    right:"40px",
+                },
+                xAxis: {
+                    type: 'category',
+                    data:[],
+                    axisTick:{
+                        show:false,
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            type:'dotted',
+                            color: '#333333',
+                        },
+                    },
+                    axisLabel:{
+                        show:true,
+                        textStyle:{
+                            color: "#333",
+                            fontSize:14,
+                        } 
+                    },
+                    axisTick:{
+                        show:true,
+                    }
+                },
+                yAxis: [{
+                        type: 'value',
+                        splitNumber:3,
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                        splitLine:{
+                            show:false, 
+                        },
+                        axisLabel:{
+                            textStyle:{
+                                fontSize:12,
+                            }   
+                        },
+                        },
+                ],
+                series: [{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    // smooth: false,
+                    itemStyle:{
+                        normal:{
+                            shadowColor: 'rgba(166, 212, 171, 1)',
+                            shadowBlur: 12,
+                            color:'#b6d480',
+                            lineStyle: {
+                            normal: {
+                                color: '#b6d480',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#ef887f',
+                            lineStyle: {
+                            normal: {
+                                color: '#ef887f',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#6d88c4',
+                            lineStyle: {
+                            normal: {
+                                color: '#6d88c4',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#bc7cb2',
+                            lineStyle: {
+                            normal: {
+                                color: '#bc7cb2',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#90c99b',
+                            lineStyle: {
+                            normal: {
+                                color: '#90c99b',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#99d5f3',
+                            lineStyle: {
+                            normal: {
+                                color: '#99d5f3',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                }],
+                animation:false
+            };
+        var chartData_4 = {
+                title: {
+                    text:"",
+                    left: 20,
+                    top:10,
+                    color:"#005525",
+                    textStyle:{
+                        color:"#005525",
+                        fontSize:16,
+                    }
+                },
+                grid:{
+                    top:50,
+                    bottom:35,
+                    left:"60px",
+                    right:"40px",
+                },
+                xAxis: {
+                    type: 'category',
+                    data:[],
+                    axisTick:{
+                        show:false,
+                    },
+                    axisLine:{
+                        lineStyle:{
+                            type:'dotted',
+                            color: '#333333',
+                        },
+                    },
+                    axisLabel:{
+                        show:true,
+                        textStyle:{
+                            color: "#333",
+                            fontSize:14,
+                        } 
+                    },
+                    axisTick:{
+                        show:true,
+                    }
+                },
+                yAxis: [{
+                        type: 'value',
+                        splitNumber:3,
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                        splitLine:{
+                            show:false, 
+                        },
+                        axisLabel:{
+                            textStyle:{
+                                fontSize:12,
+                            }   
+                        },
+                        },
+                ],
+                series: [{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    // smooth: false,
+                    itemStyle:{
+                        normal:{
+                            shadowColor: 'rgba(166, 212, 171, 1)',
+                            shadowBlur: 12,
+                            color:'#b6d480',
+                            lineStyle: {
+                            normal: {
+                                color: '#b6d480',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#ef887f',
+                            lineStyle: {
+                            normal: {
+                                color: '#ef887f',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#6d88c4',
+                            lineStyle: {
+                            normal: {
+                                color: '#6d88c4',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#bc7cb2',
+                            lineStyle: {
+                            normal: {
+                                color: '#bc7cb2',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#90c99b',
+                            lineStyle: {
+                            normal: {
+                                color: '#90c99b',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                },{
+                    data:[],
+                    type: 'bar',
+                    symbol:"circle",
+                    symbolSize:10,
+                    barWidth:12,
+                    itemStyle:{
+                        normal:{
+                            color:'#99d5f3',
+                            lineStyle: {
+                            normal: {
+                                color: '#99d5f3',
+                                width: 2,
+                                type: 'solid'
+                                }
+                            },
+                        }
+                    },
+                    label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                    },
+                }],
+                animation:false
+            };
+
+        var rwmcList = [];
+        var pageInfo = _.find(allPageInfo.page,{"mb":"3"});
+        var xmInfo = _.find(pageInfo.bgdItemlist,{"lx":14});
+        
+        $("#app").append("<div class='innerTemplate morals '><div class='moralsMain'><div class='moralChart'></div><div class='moralsSubTit'>评价与建议</div><div class='suggestMain'><div class='suggestBox'><div class='suggestCont moralsAppraise'></div></div></div></div></div>")
+
+        // <div class='moralsItem'><div class='moraltips'><span class='kp_1'>遵守规则</span><span class='kp_2'>关心集体</span><span class='kp_3'>乐于助人</span><span class='kp_4'>活动参与</span></div><div class='moralChart'id='moralsData_1'></div></div>
+        var tempHtml="";
+        for(var i=0;i<xmInfo.xmReportList.length;i++){
+            tempHtml = tempHtml + "<div class='moralsItem'><div class='moraltips'>"
+            var spanHtml = "";
+            for(var j=0;j<xmInfo.xmReportList[i].zxmList[0].rwList.length;j++){
+                spanHtml = spanHtml + "<span class='kp_"+(j+1)+"'>"+xmInfo.xmReportList[i].zxmList[0].rwList[j].mc+"</span>"
+            }
+            tempHtml = tempHtml + spanHtml + "</div><div class='moralChart' id='moralsData_"+(i+1)+"'></div></div>"
+        }
+        $(".moralChart").html(tempHtml);
+        var sumWeek=0;
+        var sumScore=[0,0,0,0,0,0];
+
+        // for(var i=1;i<xmInfo.xmReportList.length;i++){
+        //     eval("chartData_"+(i+1)) = $.extend(true,{},chartData_1);
+        // }
+        // console.log(eval("chartData_1"),400)
+        for(var i=0;i<xmInfo.xmReportList.length;i++){
+            eval("chartData_"+(i+1)).title.text = xmInfo.xmReportList[i].mc;
+            //x轴的坐标（周1，2，3，4，5）
+            eval("chartData_"+(i+1)).xAxis.data = [];
+            //循环周次4周 4次循环
+            for(var j=0;j<xmInfo.xmReportList[i].zxmList.length;j++){
+                eval("chartData_"+(i+1)).xAxis.data.push(xmInfo.xmReportList[i].zxmList[j].mc)
+                if(xmInfo.xmReportList[i].zxmList[j].rwList[0].sz!=0){
+                    sumWeek =  sumWeek + 1;
+                }
+                //把成绩循环push到series里..
+                for(var k=0;k<xmInfo.xmReportList[i].zxmList[j].rwList.length;k++){
+                    rwmcList[k] = xmInfo.xmReportList[i].zxmList[j].rwList[k].mc;
+                    eval("chartData_"+(i+1)).series[k].data.push(xmInfo.xmReportList[i].zxmList[j].rwList[k].sz)
+                    // console.log(this.xmInfo.xmReportList[i].zxmList[j].rwList[k].sz)
+                    sumScore[k] += parseInt(xmInfo.xmReportList[i].zxmList[j].rwList[k].sz);
+                }
+            }
+            // console.log(eval("chartData_"+(i+1)),971)
+            var dy = echarts.init(document.getElementById("moralsData_"+(i+1)));
+            dy.setOption(eval("chartData_"+(i+1)));
+        }
+
+        var appraise="";
+        for(var i=0;i<sumScore.length;i++){
+            var lev;
+            var xm;
+            if(sumScore[i]/sumWeek>100){
+                lev = "A";
+            }else if(sumScore[i]/sumWeek>=90&&sumScore[i]/sumWeek<=100){
+                lev = "A";
+            }else if(sumScore[i]/sumWeek>=80&&sumScore[i]/sumWeek<90){
+                lev = "B";
+            }else if(sumScore[i]/sumWeek>=70&&sumScore[i]/sumWeek<80){
+                lev = "C";
+            }else if(sumScore[i]/sumWeek<70){
+                lev = "D";
+            }
+            // console.log(this.sumScore[i]/this.sumWeek);
+            // console.log("lev="+lev)
+            // console.log(this.rwmcList)
+            //这里的报错是因为有6个任务了
+            appraise = appraise + "<p><b>" + rwmcList[i] + ":</b>" + morals.get(rwmcList[i]).appraise[lev] + "</p>";
+        }
+
+
+        // var appraise="";
+        // var suggest="";
+        // for(var i=0;i<sumScore.length;i++){
+        //     var lev;
+        //     if(sumScore[i]>100){
+        //         lev = "A";
+        //     }else if(sumScore[i]>=90&&sumScore[i]<=100){
+        //         lev = "A";
+        //     }else if(sumScore[i]>=80&&sumScore[i]<90){
+        //         lev = "B";
+        //     }else if(sumScore[i]>=70&&sumScore[i]<80){
+        //         lev = "C";
+        //     }else if(sumScore[i]>=60&&sumScore[i]<70){
+        //         lev = "D";
+        //     }else if(sumScore[i]<60){
+        //         lev = "E";
+        //     }
+        //     // console.log(this.sumScore[i]);
+        //     // console.log("lev="+lev)
+        //     appraise = appraise + appraiseStandard[i][lev];
+        //     suggest = suggest + suggestStandard[i][lev];
+        // }
+
+        $(".moralsAppraise").html(appraise);
+        // $(".moralsSuggest").html(suggest);
+
+    }
+    
+    function creatMb4(){
+        var chartData = {
+            radar: {
+                // shape: 'circle',
+                name: {
+                    textStyle: {
+                        color: '#fff',
+                        backgroundColor: '#999',
+                        borderRadius: 3,
+                        padding: [3, 5]
+                }
+                },
+                indicator: [
+                ]
+            },
+            series: [{
+                name: '成绩',
+                type: 'radar',
+                // areaStyle: {normal: {}},
+                data : [
+                    {
+                        value : [],
+                        name : '成绩'
+                    }
+                ]
+            }]
+            };
+        var pageInfo = _.find(allPageInfo.page,{"mb":"4"});             //当前页面的数据
+
+        var kcAllPage = _.filter(allPageInfo.page,{"mb":"5"});          //所有课程的页面
+        var BkcAllPage = _.filter(allPageInfo.page,{"mb":"5_1"});
+        var CkcAllPage = _.filter(pageInfo.bgdItemlist,{"lx":18})[0].xkkcxzGroupList;
+
+        // console.log(CkcAllPage);
+
+        var rych = _.find(pageInfo.bgdItemlist,{"bm":"荣誉称号"}).fy;
+        var tcsy = _.find(pageInfo.bgdItemlist,{"bm":"特长素养"}).fy;
+
+
+        
+
+        var seed = Math.random();
+        var appendHtml = "<div class='innerTemplate summary '><div class='summaryMain'><table class='scroeTable' cellspacing='0' cellpadding='0'><tr><th rowspan='2'>学科</th><th rowspan='2' class='wordCenter'>课堂表现</th><th rowspan='2' class='wordCenter'>作业情况</th><th colspan='2' class='wordCenter'>知识技能</th></tr><tr><th class='wordCenter'>期末</th><th class='wordCenter'>总评</th></tr>";
+        var tableHtml = "";
+        var ratingArr = [];
+        for(var i=0;i<kcAllPage.length;i++){
+            tableHtml = tableHtml + "<tr><td>"+kcAllPage[i].bgdItemlist[0].kcmc+"</td><td>"+getXmValue(kcAllPage[i].bgdItemlist[0].xmReportList,'课堂表现')+"</td><td>"+getXmValue(kcAllPage[i].bgdItemlist[0].xmReportList,'作业情况')+"</td><td class='wordCenter'>"+getRwValue(kcAllPage[i].bgdItemlist[0].xmReportList,'知识技能','期末',kcAllPage[i].bgdItemlist[0].kcmc)+"</td><td class='wordCenter'>"+getRwValue(kcAllPage[i].bgdItemlist[0].xmReportList,'知识技能','总评',kcAllPage[i].bgdItemlist[0].kcmc)+"</td></tr>"
+
+            var kcobj = kcAllPage[i].bgdItemlist[0];
+            var kcmc = kcobj.kcmc;
+            var cjArr = _.find(kcobj.xmReportList,{"mc":"知识技能"})
+            if(cjArr){
+                //找到总评的信息用于底部的统计和画图
+                var rwobj = _.find(cjArr.zxmList,{'mc':'总评'})
+                //设置雷达图的参数
+                chartData.radar.indicator.push({name:(kcmc+"("+(rwobj.rwList[0].djz)+")"),max:4});
+                chartData.series[0].data[0].value.push(changeVal(rwobj.rwList[0].djz));
+
+                // console.log(kcmc,202)
+                // console.log(changeLev(rwobj),203)
+                ratingArr.push({'kcmc':kcmc,'djz':rwobj.rwList[0].djz})
+            } 
+        }
+        appendHtml = appendHtml + tableHtml + "</table><table class='scroeTable' cellspacing='0' cellpadding='0'><tr><th rowspan='2'>学科</th><th rowspan='2' class='wordCenter' style='width:375px;'>课堂表现</th><th colspan='2' class='wordCenter'>知识技能</th></tr><tr><th class='wordCenter'>期末</th><th class='wordCenter'>总评</th></tr>";
+
+        tableHtml = "";
+        for(var i=0;i<BkcAllPage.length;i++){
+            tableHtml = tableHtml + "<tr><td>"+BkcAllPage[i].bgdItemlist[0].kcmc+"</td><td>"+getXmValue(BkcAllPage[i].bgdItemlist[0].xmReportList,'课堂表现')+"</td><td class='wordCenter'>"+getRwValue(BkcAllPage[i].bgdItemlist[0].xmReportList,'知识技能','期末',BkcAllPage[i].bgdItemlist[0].kcmc)+"</td><td class='wordCenter'>"+getRwValue(BkcAllPage[i].bgdItemlist[0].xmReportList,'知识技能','总评',BkcAllPage[i].bgdItemlist[0].kcmc)+"</td></tr>"
+
+            var kcobj = BkcAllPage[i].bgdItemlist[0];
+            var kcmc = kcobj.kcmc;
+            var cjArr = _.find(kcobj.xmReportList,{"mc":"知识技能"})
+            if(cjArr){
+                //找到总评的信息用于底部的统计和画图
+                var rwobj = _.find(cjArr.zxmList,{'mc':'总评'})
+                //设置雷达图的参数
+                chartData.radar.indicator.push({name:(kcmc+"("+(rwobj.rwList[0].djz)+")"),max:4});
+                chartData.series[0].data[0].value.push(changeVal(rwobj.rwList[0].djz));
+
+                // console.log(kcmc,202)
+                // console.log(changeLev(rwobj),203)
+                ratingArr.push({'kcmc':kcmc,'djz':rwobj.rwList[0].djz})
+            } 
+        }
+        appendHtml = appendHtml + tableHtml + "</table><table class='scroeTable' cellspacing='0' cellpadding='0'><tr><th colspan='2'>学科</th><th class='wordCenter'>态度习惯</th><th class='wordCenter'>学分</th><th class='wordCenter'>知识技能</th></tr>";
+        tableHtml = "";
+        for(var i=0;i<CkcAllPage.length;i++){
+            for(var j=0;j<CkcAllPage[i].kcList.length;j++){
+                if(j==0){
+                    tableHtml = tableHtml + "<tr><td rowspan='"+CkcAllPage[i].kcList.length+"'>"+CkcAllPage[i].kcxz+"</td>";
+                }else{
+                    tableHtml = tableHtml + "<tr>";
+                }
+                tableHtml = tableHtml + "<td>"+CkcAllPage[i].kcList[j].kcmc+"</td><td>"+CkcAllPage[i].kcList[j].tdxg+"</td><td>"+CkcAllPage[i].kcList[j].cj+"</td><td>"+CkcAllPage[i].kcList[j].zsjn+"</td></tr>"
+            }
+        }
+        appendHtml = appendHtml + tableHtml + "</table>"
+
+
+        
+
+
+        // console.log(appendHtml)
+
+        
+
+        var jcqkHtml = "<table class='rewardTable' cellspacing='0' cellpadding='0'><tr><th>荣誉称号</th> <th>特长素养</th></tr><tr><td><div>"+(rych?rych:'')+"</div></td><td><div>"+(tcsy?tcsy:'')+"</div></td></tr></table></div>";
+
+
+
+
+
+
+
+        //var jcqkHtml = "<table class='rewardTable' cellspacing='0' cellpadding='0'><tr><th>奖惩情况</th></tr><tr><td>55</td></tr></table></div>"
+
+        var chartHtml = "<div class='summaryChart'><div class='summaryTit'>成绩分析</div><div class='chartBox'><div class='radarChart'><div class='radarTit'>全面成绩模型<p>单科在班级中水平情况</p></div><div class='chartContent' id='radarChart"+seed+"'></div></div><div class='treeChart'><div class='chartContent'><div class='treeTips'></div><div class='treeBox'><div class='treelev'>等级：树苗</div><div class='treetips'>期待你的茁壮成长</div><div class='treereal'><div class='leafbg'></div><div class='treeobj'>"
+   
+        var treeHtml = ""
+        for(var i=0;i<ratingArr.length;i++){
+            treeHtml =  treeHtml + "<div class='LeafBox' id='l_"+i+"'><span class='mc'>"+ratingArr[i].kcmc+"</span><div class='Leaf l_"+ratingArr[i].djz+"'></div></div>"
+        }
+        
+
+        appendHtml = appendHtml + jcqkHtml + chartHtml + treeHtml + "</div></div></div></div></div></div></div></div>"
+        
+        // console.log(chartData,1107);
+        
+        
+        
+        //$("#app").append("<div class='innerTemplate summary'><div class='summaryMain'><table class='scroeTable' cellspacing='0' cellpadding='0'><tr><th rowspan='2'>学科</th><th rowspan='2'>课堂表现</th><th rowspan='2'>作业情况</th><th colspan='3'>知识技能</th></tr><tr><th>期中</th><th>期末</th><th>总评</th></tr><tr><td>语文</td><td></td><td></td><td></td><td></td><td></td></tr></table><table class='rewardTable' cellspacing='0' cellpadding='0'><tr><th>奖惩情况</th></tr><tr><td>获得2018-2019学年第二学期“三好学生”荣誉称号</td></tr></table></div><div class='summaryChart'><div class='summaryTit'>成绩分析</div><div class='chartBox'><div class='radarChart'><div class='radarTit'>全面成绩模型<p>单科在班级中水平情况</p></div><div class='chartContent' id='radarChart"+seed+"'></div></div><div class='treeChart'><div class='chartContent'><div class='treeTips'></div><div class='treeBox'><div class='treelev'>等级：树苗</div><div class='treetips'>期待你的茁壮成长</div><div class='treereal'><div class='treeobj'></div></div></div></div></div></div></div></div>");
+
+        $("#app").append(appendHtml)
+        
+        var chartObj = echarts.init(document.getElementById('radarChart'+seed));
+        chartObj.setOption(chartData);
+
+        // var chartObj = echarts.init(document.getElementById('radarChart'+seed));
+        // chartObj.setOption(chartData);
+    }
+
+    function creatMb5(uuid){
+        var line1 = {
+                title: {
+                    text:"(生命值)分值/周次",
+                    left: 20,
+                    top:5,
+                    textStyle:{
+                        fontSize:14,
+                    }
+                },
+                color: ['#02b182'],
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                backgroundColor :'#FFFFFF',
+                grid: {
+                    top: '40px',
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : [],
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                    }
+                ],
+                series : [
+                    {
+                        name:'成绩',
+                        type:'bar',
+                        barWidth: '60%',
+                        label: {
+                            normal: { 
+                                fontSize:12,  
+                                show: true,
+                            }
+                        },
+                        data:[]
+                    }
+                ],
+                animation:false
+            };
+        var line2 = {
+                title: {
+                    text:"(法术值)分值/周次",
+                    left: 20,
+                    top:5,
+                    textStyle:{
+                        fontSize:14,
+                    }
+                },
+                color: ['#e75d24'],
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    top: '40px',
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                backgroundColor :'#FFFFFF',
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : [],
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisTick:{
+                            show:false,
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                type:'dotted',
+                                color: '#333333',
+                            },
+                        },
+                    }
+                ],
+                series : [
+                    {
+                        name:'成绩',
+                        type:'bar',
+                        barWidth: '60%',
+                        label: {
+                            normal: { 
+                                fontSize:12,  
+                                show: true,
+                            }
+                        },
+                        data:[]
+                    }
+                ],
+                animation:false
+            };
+        var seed = Math.random();
+        
+        var pageInfo = _.find(allPageInfo.page,{"uuid":uuid});
+        var xmList = pageInfo.bgdItemlist[0].xmReportList;
+        var xmpj;
+        if(pageInfo.mc=="自主善学-语文"){
+            xmpj = yw_high;
+        }else if(pageInfo.mc=="自主善学-数学"){
+            xmpj = sx_high;
+        }else if(pageInfo.mc=="自主善学-英语"){
+            xmpj = yy_high;
+        }else if(pageInfo.mc=="自主善学-科学"){
+            xmpj = kx_high;
+        }
+
+        
+        var ktInfo = _.find(xmList,{"mc":"课堂表现"});
+        var zyInfo = _.find(xmList,{"mc":"作业情况"});
+
+        var appraiseStandard = [{
+            "A":"你的课堂表现非常棒！遵守课堂纪律，积极举手回答问题，语言表达能力强，善于和同伴合作，课堂上总能听到你充满智慧的回答。",
+            "B":"你的课堂表现总体不错，有较强的口头表达能力，能和同伴合作完成任务。偶尔会有开小差还坐不住的行为，希望能引起重视。",
+            "C":"你的课堂表现时好时坏，不太稳定。尤其是倾听的习惯，愿意听的时候，你会非常专心，不愿意听的时候你总是在走神开小差。",
+            "D":"上课的时候你的注意力不能很好集中，总是会被学习以外的事物影响，以至于听课的效率不高。"},{
+            "A":"每次看到你的作业都让人感到非常舒服。工整的书写、准确的表达、超高的正确率，那是相当优秀！",
+            "B":"你的作业情况总体不错，如果能把书写和正确率再提高一点，写完再仔细检查一遍，就更好了！",
+            "C":"你的作业情况时好时坏，不太稳定。如果你能合理安排好自己的时间，作业做到日日清，周周清，相信你的学习会有进步。",
+            "D":"你的作业总是需要老师催，你的订正总是不及时。作业是所学知识的巩固和检查，希望你能重视。"}
+        ];
+
+        var suggestStandard = [{
+            "A":"继续保持，做同学们的榜样！",
+            "B":"积极投入到每一节课的学习中去，加强自我管理和自我约束的能力。",
+            "C":"希望你在课堂上能加强自我管理和自我约束的能力，学会和同伴沟通合作，认认真真上好每一节课。",
+            "D":"希望你在课堂上能加强自我管理和自我约束的能力，养成认真倾听的习惯，学会和同伴合作。",},{
+            "A":"继续保持，做同学们的榜样！",
+            "B":"端正书写，仔细做题，认真检查，不会的题目要及时请教。",
+            "C":"认真书写，按时完成作业，及时订正，遇到不会的题目要及时请教。",
+            "D":"加强书写，按时完成作业，及时订正，及时巩固，遇到不会的题目要及时请教。"}
+        ]
+        var appraise = "";
+        var suggest = "";
+
+        var otherXmList =  _.reject(xmList,function(o) {
+            if(o.mc.indexOf("课堂表现")!=-1||o.mc.indexOf("作业情况")!=-1||o.mc.indexOf("知识技能")!=-1){
+                return true;
+            }
+            return false
+        });
+        
+        var otherXmSumScore = 0;
+        for(var i=0;i<otherXmList.length;i++){
+            otherXmSumScore = otherXmSumScore + otherXmList[i].rwList[0].sz;
+        }
+
+        // console.log(pageInfo,1210)
+
+        var appendHtml = "<div class='innerTemplate courseReport '><div class='courseTit'>"+pageInfo.mc+"</div><div class='courseMain'><table class='courseTable'cellspacing='0'cellpadding='0'><tr><th width='210'>评分项目</th><th width='170' class='wordCenter'>分值</th><th width='170' class='wordCenter'>等级</th><th width='360' class='wordCenter'>水平</th></tr>";
+
+        var xmHtml = "";
+        
+        for(var i=0;i<otherXmList.length;i++){
+            xmHtml = xmHtml + "<tr><td>"+otherXmList[i].mc+"</td><td class='wordCenter'>"+otherXmList[i].rwList[0].xf+"</td><td class='wordCenter'>"+otherXmList[i].rwList[0].djz+"</td><td><div class='roadBox'><div class='person'style='left:"+(95-otherXmList[i].rwList[0].njpmzb)+"%'></div></div></td></tr>"
+        }
+        xmHtml = xmHtml + "<tr><td>总分</td><td colspan='3'>"+getLev(otherXmSumScore)+"</td></tr></table>"
+
+        var chartHtml = "<div class='courseSubTit'>课堂表现</div><div class='courseChart'><div class='lineChart' id='bxChart"+seed+"'></div></div><div class='courseSubTit'>作业情况</div><div class='courseChart'><div class='lineChart' id='zyChart"+seed+"'></div></div>"
+
+        var ktSumScore=0;
+        var zySumScore=0;
+        var sumAverage=[];
+
+        if(ktInfo&&zyInfo&&ktInfo.zxmList&&zyInfo.zxmList){
+
+            for(var i=0;i<ktInfo.zxmList.length;i++){
+                line1.xAxis[0].data.push(ktInfo.zxmList[i].mc)
+                line1.series[0].data.push(ktInfo.zxmList[i].rwList[0].sz);
+                ktSumScore = ktSumScore + ktInfo.zxmList[i].rwList[0].sz
+            }
+            sumAverage[0] = ktSumScore/ktInfo.zxmList.length;
+
+
+            for(var i=0;i<zyInfo.zxmList.length;i++){
+                line2.xAxis[0].data.push(zyInfo.zxmList[i].mc)
+                line2.series[0].data.push(zyInfo.zxmList[i].rwList[0].sz);
+                zySumScore = zySumScore + zyInfo.zxmList[i].rwList[0].sz
+            }
+            sumAverage[1] = zySumScore/zyInfo.zxmList.length;
+            
+            for(var i=0;i<otherXmList.length;i++){
+                var curXmPj = xmpj.get(otherXmList[i].mc);
+                if(curXmPj){
+                    appraise = appraise + "<p><b>" + otherXmList[i].mc + "</b>:" + curXmPj.appraise[otherXmList[i].rwList[0].djz] + "</p>";
+                    suggest = suggest + "<p><b>" + otherXmList[i].mc + "</b>:" + curXmPj.suggest[otherXmList[i].rwList[0].djz] + "</p>";
+                    // console.log(curXmPj.appraise[this.otherXmList[i].rwList[0].djz]); 
+                    // console.log(curXmPj.suggest[this.otherXmList[i].rwList[0].djz]); 
+                }
+                // this.appraise = this.appraise + this.appraiseStandard[i][lev];
+                // this.suggest = this.suggest + this.suggestStandard[i][lev];
+            }
+
+
+            for(var i=0;i<sumAverage.length;i++){
+                var lev;
+                if(sumAverage[i]>95){
+                    lev = "A";
+                }else if(sumAverage[i]>=90&&sumAverage[i]<95){
+                    lev = "B";
+                }else if(sumAverage[i]>=75&&sumAverage[i]<90){
+                    lev = "C";
+                }else if(sumAverage[i]<75){
+                    lev = "D";
+                }
+
+                appraise = appraise +  "<p><b>" + (i==0?'课堂表现:</b>':'作业情况:</b>') + appraiseStandard[i][lev] + "</p>";
+                suggest = suggest + "<p><b>" + (i==0?'课堂表现:</b>':'作业情况:</b>') + suggestStandard[i][lev] + "</p>";
+            }
+        }
+
+        var suggestHtml = "<div class='courseSubTit'>评价与建议</div><div class='suggestMain'><div class='suggestBox'><div class='suggestTit'>评价</div><div class='suggestCont'>"+appraise+"</div></div><div class='suggestBox'><div class='suggestTit'>建议</div><div class='suggestCont'>"+suggest+"</div></div></div>"
+
+        appendHtml = appendHtml + xmHtml + chartHtml + suggestHtml + "</div></div>"
+
+        $("#app").append(appendHtml);
+
+        
+        var bx = echarts.init(document.getElementById('bxChart'+seed));
+        bx.setOption(line1);
+
+        var zy = echarts.init(document.getElementById('zyChart'+seed));
+        zy.setOption(line2);
+
+    }
+
+    function creatMb6(){
+
+        var pageInfo = _.find(allPageInfo.page,{"mb":"6"});
+        var curPageItem = _.find(pageInfo.bgdItemlist,{"lx":14}).xmReportList;
+        var hjqkObj = _.find(curPageItem,{"mc":"获奖情况"});
+        var otherXmList =  _.reject(curPageItem,{"mc":"获奖情况"});
+        var hjqk = [];
+        var sumScore = 0;
+        var addSumScore = 0;
+
+        var appraise = "";
+        var suggest = "";
+
+
+        //计算各个分项的总分 和 实践的总得分
+        for(var i=0;i<otherXmList.length;i++){
+            var xmSumScore=0;
+            for(var j=0;j<otherXmList[i].rwList.length;j++){
+                xmSumScore = xmSumScore + otherXmList[i].rwList[j].sz;
+            }
+            otherXmList[i].sumSz = xmSumScore;
+            // appraise = appraise + appraiseStandard[i][getLev(xmSumScore)];
+            // suggest = suggest + suggestStandard[i][getLev(xmSumScore)];
+            appraise = appraise + "<p><b>" + otherXmList[i].mc + ":</b>" + sjcx.get(otherXmList[i].mc).appraise[getDj(xmSumScore)] + "</p>"
+            sumScore = sumScore + xmSumScore;
+        }
+
+        
+
+        if(hjqkObj){
+            hjqk = hjqkObj.zxmList  
+            for(var i=0;i<hjqk.length;i++){
+                var xmSumScore=0;
+                for(var j=0;j<hjqk[i].rwList.length;j++){
+                    xmSumScore = xmSumScore + hjqk[i].rwList[j].xmcjInfo.twInfo[0].fz;
+                }
+                addSumScore = addSumScore + xmSumScore;
+            }
+        }
+
+        var appendHtml = "<div class='innerTemplate practice '><div class='practiceMain'><table class='practiceTable'cellspacing='0'cellpadding='0'><tr><th width='210'>考评项目</th><th width='360'>实践活动</th><th width='120' class='wordCenter'>得分</th><th width='120' class='wordCenter'>项目总分</th></tr>";
+
+        var xmHtml = "";
+        for(var i=0;i<otherXmList.length;i++){
+            for(var j=0;j<otherXmList[i].rwList.length;j++){
+                if(j==0){
+                    xmHtml = xmHtml + "<tr><td rowspan='"+otherXmList[i].rwList.length+"'>"+otherXmList[i].mc+"</td><td>"+otherXmList[i].rwList[j].mc+"</td><td>"+otherXmList[i].rwList[j].sz+"</td><td rowspan='"+otherXmList[i].rwList.length+"'>"+otherXmList[i].sumSz+"</td></tr>"
+                }else{
+                    xmHtml = xmHtml + "<tr><td>"+otherXmList[i].rwList[j].mc+"</td><td>"+otherXmList[i].rwList[j].sz+"</td></tr>"
+                }
+            }   
+        }
+        xmHtml = xmHtml + "</table>"
+
+        // var hjqkHtml = "<table class='practiceTable'cellspacing='0'cellpadding='0'><tr><th colspan='4'>获奖情况</th></tr><tr><td width='210'>级别</td><td width='480'>比赛名称</td><td width='120'>名次</td><td width='120'>加分</td></tr><tr>";
+        
+        // for(var i=0;i<hjqk.length;i++){
+        //     for(var j=0;j<hjqk[i].rwList.length;j++){
+        //         hjqkHtml = hjqkHtml + "<tr><td>"+hjqk[i].mc+"</td><td>"+hjqk[i].rwList[j].mc+"</td><td>"+hjqk[i].rwList[j].twnr+"</td><td>"+hjqk[i].rwList[j].xmcjInfo.twInfo[0].fz+"</td></tr>"
+        //     }   
+        // }
+
+        // hjqkHtml = hjqkHtml + "<tr><td>总加分</td><td colspan='3'>"+addSumScore+"</td></tr><tr><td>实践创新总分</td><td colspan='2'>"+(sumScore+addSumScore)+"</td><td>"+getLev(sumScore+addSumScore)+"</td></tr></table>"
+
+        var suggestHtml = "<div class='practiceSubTit'>评价与建议</div><div class='suggestMain'><div class='suggestBox'><div class='suggestCont'>"+appraise+"</div></div></div>" 
+
+        appendHtml = appendHtml + xmHtml + suggestHtml + "</div></div>"
+
+        $("#app").append(appendHtml);
+    }
+
+    function creatMb7(){
+
+        var pageInfo = _.find(allPageInfo.page,{"mb":"7"});
+        var interXmList = _.find(pageInfo.bgdItemlist,{"lx":14}).xmReportList;
+        var sumScore = 0;              //国际理解的总分
+        var addSumScore = 0;           //加分的总分
+
+        var appraiseStandard = [
+            {"A":"评价国际理解一A。","B":"评价国际理解一B。","C":"评价国际理解一C。","D":"评价国际理解一D。","E":"评价国际理解一E。"},
+            {"A":"评价国际理解二A。","B":"评价国际理解二B。","C":"评价国际理解二C。","D":"评价国际理解二D。","E":"评价国际理解二E。"},
+            {"A":"评价国际理解三A。","B":"评价国际理解三B。","C":"评价国际理解三C。","D":"评价国际理解三D。","E":"评价国际理解三E。"}
+        ];
+        var suggestStandard = [
+            {"A":"建议国际理解一A。","B":"建议国际理解一B。","C":"建议国际理解一C。","D":"建议国际理解一D。","E":"建议国际理解一E。"},
+            {"A":"建议国际理解二A。","B":"建议国际理解二B。","C":"建议国际理解二C。","D":"建议国际理解二D。","E":"建议国际理解二E。"},
+            {"A":"建议国际理解三A。","B":"建议国际理解三B。","C":"建议国际理解三C。","D":"建议国际理解三D。","E":"建议国际理解三E。"}
+        ];
+        var appraise = "";
+        var suggest = "";
+
+        for(var i=0;i<interXmList.length;i++){
+            var xmSumScore=0;
+            for(var j=0;j<interXmList[i].rwList.length;j++){
+                xmSumScore = xmSumScore + interXmList[i].rwList[j].sz;
+            }
+            interXmList[i].sumSz = xmSumScore;
+            // appraise = appraise + appraiseStandard[i][getLev(xmSumScore)];
+            // suggest = suggest + suggestStandard[i][getLev(xmSumScore)];
+            appraise = appraise + "<p><b>" + interXmList[i].mc + ":</b>" + gjlj.get(interXmList[i].mc).appraise[getDj(xmSumScore)] + "</p>"
+            suggest = suggest + "<p><b>" + interXmList[i].mc + ":</b>" + gjlj.get(interXmList[i].mc).suggest[getDj(xmSumScore)] + "</p>"
+            //this.getAutoSuggest(xmSumScore,i);
+            sumScore = sumScore + xmSumScore;
+        }
+
+        var appendHtml = "<div class='innerTemplate inter '><div class='interMain'><table class='interTable'cellspacing='0'cellpadding='0'><tr><th width='210'>考评项目</th><th width='360'>内容</th><th width='120' class='wordCenter'>得分</th><th width='120' class='wordCenter'>项目总分</th></tr>";
+
+        var xmHtml = "";
+        for(var i=0;i<interXmList.length;i++){
+            for(var j=0;j<interXmList[i].rwList.length;j++){
+                if(j==0){
+                    xmHtml = xmHtml + "<tr><td rowspan='"+interXmList[i].rwList.length+"'>"+interXmList[i].mc+"</td><td>"+interXmList[i].rwList[j].mc+"</td><td  class='wordCenter'>"+interXmList[i].rwList[j].sz+"</td><td rowspan='"+interXmList[i].rwList.length+"'  class='wordCenter'>"+interXmList[i].sumSz+"</td></tr>"
+                }else{
+                    xmHtml = xmHtml + "<tr><td>"+interXmList[i].rwList[j].mc+"</td><td  class='wordCenter'>"+interXmList[i].rwList[j].sz+"</td></tr>"
+                }
+            }   
+        }
+        xmHtml = xmHtml + "</table>"
+
+        var suggestHtml = "<div class='interSubTit'>评价与建议</div><div class='suggestMain'><div class='suggestBox'><div class='suggestTit'>评价</div><div class='suggestCont'>"+appraise+"</div></div><div class='suggestBox'><div class='suggestTit'>建议</div><div class='suggestCont'>"+suggest+"</div></div></div>" 
+
+
+
+        appendHtml = appendHtml + xmHtml + suggestHtml + "</div></div>"
+        $("#app").append(appendHtml);
+
+    }
+
+    function creatMb8(){
+
+        var pageInfo = _.find(allPageInfo.page,{"mb":"8"});
+        var sy="";
+        var zy="";
+        var xy="";
+        var sh="";
+        var pjjy="";
+
+        sy = _.find(pageInfo.bgdItemlist,{"bm":"生涯"}).fy;
+        zy = _.find(pageInfo.bgdItemlist,{"bm":"专业"}).fy;
+        xy = _.find(pageInfo.bgdItemlist,{"bm":"学业"}).fy;
+        sh = _.find(pageInfo.bgdItemlist,{"bm":"生活"}).fy;
+        pjjy = _.find(pageInfo.bgdItemlist,{"bm":"评价与建议"}).fy;
+
+
+
+        $("#app").append("<div class='innerTemplate growup '><div class='reportTit'>成长规划</div><div class='growupMain'><table class='growupTable'cellspacing='0'cellpadding='0'><tr><th>生涯</th></tr><tr><td>"+(sy?sy:'')+"</td></tr></table><table class='growupTable'cellspacing='0'cellpadding='0'><tr><th>专业</th></tr><tr><td>"+(zy?zy:'')+"</td></tr></table><table class='growupTable'cellspacing='0'cellpadding='0'><tr><th>学业</th></tr><tr><td>"+(xy?xy:'')+"</td></tr></table><table class='growupTable'cellspacing='0'cellpadding='0'><tr><th>生活</th></tr><tr><td>"+(sh?sh:'')+"</td></tr></table><div class='subTit'>评价与建议</div><div class='growupSuggest'>"+(pjjy?pjjy:'')+"</div></div><div class='growupBot'></div></div>");
+    }
+
+    function creatMb9(){
+        var xzmessage="";
+        
+        var pageInfo = _.find(allPageInfo.page,{"mb":"9"});
+        var qm = "";
+        if(_.find(pageInfo.bgdItemlist[0].bgdqmModels,{"zc":"校长"})){
+            qm = _.find(pageInfo.bgdItemlist[0].bgdqmModels,{"zc":"校长"}).qm;
+        }
+        xzmessage = _.find(allGradeBgdszList,{"bm":"校长寄语"}).fy; 
+
+        $("#app").append("<div class='innerTemplate message '><div class='messageTit'>陆颖校长寄语</div><div class='jyCont'>"+replaceAllNr(xzmessage)+"</div><div class='sign'><img src='"+qm+"'></div></div>");
+
+
+        
+    }
+    
+    function creatMb10(){
+
+        var xxjj = "";
+        var zysx = "";
+        xxjj = _.find(allGradeBgdszList,{"bm":"学校简介"}).fy;
+        zysx = _.find(allGradeBgdszList,{"bm":"注意事项"}).fy;
+        $("#app").append("<div class='innerTemplate backcover '><div class='reportTit'>学校简介</div><div class='reportTit_2'>注意事项</div><div class='infoMain'>"+replaceAllNr(xxjj)+"</div><div class='infoMain_2'>"+replaceAllNr(zysx)+"</div></div>");
+
+    }
+    
+    
+    /**BMI转中文字 身体素质页面**/
+    function getBMIStr(bmi){
+        if(bmi>=14.2&&bmi<=20.1){
+            return "正常"
+        }else if(bmi>20.1&&bmi<=22.6){
+            return "微胖"
+        }else if(bmi<14.2){
+            return "偏瘦"
+        }else if(bmi>22.6){
+            return "肥胖"
+        }
+    }
+    /**获取匹配的评价或建议 身体素质页面**/
+    function getPhysicalSuggest(newObj,startObj){
+        var suggest="";
+        var zypos = startObj.zy-newObj.zy;
+        var yypos = startObj.yy-newObj.yy;
+
+        if((newObj.zy>=startObj.zy)&&(newObj.yy>=startObj.yy)){
+            suggest = suggest + "<b>视力：</b>视力正常，请定期检查视力，注意用眼卫生，多做眼保健操<br>"
+        }else if((zypos>0&&zypos<=0.1)||(yypos>0&&yypos<=0.1)){
+            suggest = suggest + "<b>视力：</b>视力轻微下降，请去专业眼科医院检查，如为假性近视，请遵医嘱治疗，勿发展为真性近视<br>"
+        }else if(zypos>0.1||yypos>0.1){
+            suggest = suggest + "<b>视力：</b>屈光不正，请去专业 眼科医院验光配镜，平时多吃绿色蔬菜，多做户外运动，常晒太阳<br>"
+        }
+
+        if(newObj.bmi>=28){
+            suggest = suggest + "<b>肥胖：</b>体重超标，请科学减肥，戒除不良生活习惯，必要时专科医院就诊<br>"
+        }else if(newObj.bmi>=24&&newObj.bmi<28){
+            suggest = suggest + "<b>偏胖：</b>多做体育运动，不挑食，不偏食，少吃油炸食品，多吃绿色蔬菜<br>"
+        }else if(newObj.bmi>=18.5&&newObj.bmi<24){
+            suggest = suggest + "<b>正常：</b>体重标准，请继续保持，多做运动，合理膳食<br>"
+        }else if(newObj.bmi<18.5){
+            suggest = suggest + "<b>偏瘦：</b>多做力量运动，均衡摄入营养	，保持良好睡眠<br>"
+        }
+
+
+
+
+        // var suggest="";
+        // if(newObj.zy>=1.2&&newObj.yy>=1.2){
+        //     suggest = suggest + "第一档2只眼睛都在1.2以上。"
+        // }else if((newObj.zy<1.2||newObj.yy<1.2)&&(newObj.zy>=0.8||newObj.yy>=0.8)){
+        //     suggest = suggest + "第二档只要有一只眼睛在0.8-1.2。"
+        // }else if(newObj.zy<0.8||newObj.yy<0.8){
+        //     suggest = suggest + "第三档只要有一只眼睛在0.8以下。"
+        // }
+
+        // if(newObj.bmi>=22.7){
+        //     suggest = suggest + "肥胖需减肥。"
+        // }else if(newObj.bmi>=20.2&&newObj.bmi<22.7){
+        //     suggest = suggest + "需要控制饮食。"
+        // }else if(newObj.bmi>=14.2&&newObj.bmi<20.1){
+        //     suggest = suggest + "体重请继续保持。"
+        // }else if(newObj.bmi<14.2){
+        //     suggest = suggest + "请加强营养摄取。"
+        // }
+        return suggest
+    }
+
+    /***成绩汇总页面***/
+    function getXmValue(xmObjArr,xmName){
+        var res = _.find(xmObjArr,{"mc":xmName})
+        return res?res.djz:''
+    }
+
+    function getRwValue(xmObjArr,xmName,rwName,kcmc){
+        if(!xmObjArr){
+            return ""
+        }
+        //先获取知识技能的对象
+        var xmres = _.find(xmObjArr,{"mc":xmName})
+        if(!xmres){
+            return ""
+        }
+        //再获取相关 期中，期末，总评 对象
+        var res = _.find(xmres.zxmList,{"mc":rwName})
+        if(!res){
+            return ""
+        }
+        return res.rwList[0].djz
+        //先去转换文字 -> 数字
+        // var val = changeVal(res.twnr);
+        // if(val==-1){
+        //     val = res.sz;
+        //     return res.xmcjInfo.twInfo[0].fz
+        // }else{
+        //     return res.twnr
+        // }
+    }
+
+    function changeVal(twnr){
+        switch(twnr) {
+            case "优秀+":
+                return 100
+                break;
+            case "优秀":
+                return 95
+                break;
+            case "良好":
+                return 85
+                break;
+            case "合格":
+                return 70
+                break;
+            case "不合格":
+                return 50
+                break;
+            case "A":
+                return 4
+                break;
+            case "B":
+                return 3
+                break;
+            case "C":
+                return 2
+                break;
+            case "D":
+                return 1
+                break;
+            case "E":
+                return 0
+                break;
+            default:
+                return -1
+        } 
+        
+    }
+
+    function changeLev(rwobj){
+        // console.log()
+        var dj;
+        if(changeVal(rwobj.twnr)!=-1){
+            switch(rwobj.twnr) {
+                case "优秀+":
+                    return "A"
+                    break;
+                case "优秀":
+                    return "B"
+                    break;
+                case "良好":
+                    return "C"
+                    break;
+                case "合格":
+                    return "D"
+                    break;
+                case "不合格":
+                    return "E"
+                    break;
+                default:
+                    return -1
+            } 
+        }else{
+            var sz = rwobj.xmcjInfo.twInfo[0].fz;
+            if(sz==100){
+                return "A"
+            }else if(sz>=90&&sz<100){
+                return "B"
+            }else if(sz>=80&&sz<90){
+                return "C"
+            }else if(sz>=60&&sz<80){
+                return "D"
+            }else if(sz<60){
+                return "E"
+            }
+        }
+    }
+
+    function getLev(score){
+        if(score>100){
+            return "A"
+        }else if(score>=90&&score<=100){
+            return "A"
+        }else if(score>=80&&score<90){
+            return "B"
+        }else if(score>=70&&score<80){
+            return "C"
+        }else if(score>=60&&score<70){
+            return "D"
+        }else{
+            return "E"
+        }
+    }
+
+    /***实践创新的评价建议***/
+    function getHjSuggest(addSumScore){
+        if(addSumScore>100){
+            return ["获奖评级A级别。","获奖建议A级别。"]
+            // this.appraise = this.appraise + "获奖评级A级别。";
+            // this.suggest = this.suggest + "获奖建议A级别。"
+        }else if(addSumScore>=90&&addSumScore<=100){
+            return ["获奖评级A级别。","获奖建议A级别。"]
+            // this.appraise = this.appraise + "获奖评级A级别。";
+            // this.suggest = this.suggest + "获奖建议A级别。"
+        }else if(addSumScore>=80&&addSumScore<90){
+            return ["获奖评级B级别。","获奖建议B级别。"]
+            // this.appraise = this.appraise + "获奖评级B级别。";
+            // this.suggest = this.suggest + "获奖建议B级别。"
+        }else if(addSumScore>=70&&addSumScore<80){
+            return ["获奖评级C级别。","获奖建议C级别。"]
+            // this.appraise = this.appraise + "获奖评级C级别。";
+            // this.suggest = this.suggest + "获奖建议C级别。"
+        }else if(addSumScore>=60&&addSumScore<70){
+            return ["获奖评级D级别。","获奖建议D级别。"]
+            // this.appraise = this.appraise + "获奖评级D级别。";
+            // this.suggest = this.suggest + "获奖建议D级别。"
+        }else{
+            return ["获奖评级E级别。","获奖建议E级别。"]
+            // this.appraise = this.appraise + "获奖评级E级别。";
+            // this.suggest = this.suggest + "获奖建议E级别。"
+        }
+    }
+    function replaceAllNr(str){
+        if(str!=null)
+        str = str.replace(/\n/g,"<br>")
+        return str;
+    }
+    function getDj(score){
+        if(score>=90){
+            return "A"
+        }else if(score>=70&&score<90){
+            return "B"
+        }else if(score<70){
+            return "C"
+        }
+    }
+
+
+}
+// })
+</script>
+
+
+</html>
